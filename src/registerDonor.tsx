@@ -1,4 +1,5 @@
 import React,{useRef, useState,useEffect} from 'react'
+import './registerPatient.css'
 
 type bloodBank={
     name:string
@@ -56,10 +57,14 @@ const RegisterDonor = () => {
     
   return (
     // (name, blood_group,medical_report,address,contact_number,blood_bank,available_units)
+    <section className='registerForm'>
+         <header>
+            <h1>Register Donor</h1>
+        </header>
     <form ref={formRef} onSubmit={registerDonor}>
 
         <label htmlFor='name'>Name</label>
-        <input type="text"  name="name" id='name'/>
+        <input type="text"  name="name" id='name' placeholder='Enter Donor Name'/>
         <label htmlFor='blood-group'>Blood Group</label>
         <select name="blood_group">
             <option value='A+'>A+</option>
@@ -72,14 +77,14 @@ const RegisterDonor = () => {
             <option value='O-'>O-</option>
         </select>
        
-        <label htmlFor='medical_report'>Medical Report</label>
+        <label htmlFor='medical_report' >Medical Report</label>
         <textarea id='medical_report' name="medical_report"/>
         <label htmlFor='available_units'>No of Units to Donate</label>
-        <input type='number' id="available_units" min='0' max='100' name="available_units"/>
-        <label htmlFor='contact'>Phone Number</label>
-        <input type="tel"  name="contact_number" id='contact'/>
+        <input type='number' id="available_units" min='0' max='100' name="available_units" placeholder='Enter no of units you are willing to donate'/>
+        <label htmlFor='contact' >Phone Number</label>
+        <input type="tel"  name="contact_number" id='contact' placeholder='Enter Contact No'/>
         <label htmlFor='address'>Address</label>
-        <input type="text"  name="address" id='address'/>
+        <input type="text"  name="address" id='address' placeholder='Enter present address of donor'/>
         <select name="blood_bank">
     <option selected={true} value="choose an option">Choose a Blood Bank</option>
    {bloodbanks&&bloodbanks.map((bloodbank)=>{
@@ -91,6 +96,7 @@ const RegisterDonor = () => {
         
         <button type='submit'>Register Donor</button>
     </form>
+    </section>
   )
 }
 

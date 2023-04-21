@@ -1,0 +1,9 @@
+.navBar{
+    /* border:2px solid black; */
+    display: flex;
+    gap:1em;
+    background:#282a35;
+    color:#fff;
+    align-items: center;
+    padding:0em 1em;
+}

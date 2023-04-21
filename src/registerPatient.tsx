@@ -1,5 +1,5 @@
 import React,{useRef} from 'react'
-
+import './registerPatient.css'
 
 export const RegisterPatient = () => {
 
@@ -33,13 +33,17 @@ async function registerPatient(e:React.FormEvent<HTMLFormElement>){
 }
 
   return (
+    <section className='registerForm'>
+        <header>
+            <h1>Register Patient</h1>
+        </header>
     <form ref={formRef} onSubmit={registerPatient}>
         <label htmlFor='name'>Name</label>
-        <input type="text"  name="name" id='name'/>
+        <input type="text" placeholder='Enter Name' name="name" id='name'/>
         <label htmlFor='disease'>Disease</label>
-        <input type="text" id='disease' name="disease"/>
-        <label htmlFor='disease'>Required Units of Blood</label>
-        <input type='number' min='0' max='10' name="required_units"/>
+        <input type="text" id='disease' name="disease" placeholder='Enter the Disease Condition of the Patient'/>
+        <label htmlFor='disease' >Required Units of Blood</label>
+        <input type='number' placeholder='Enter the no of units of Blood' min='0' max='10' name="required_units"/>
         <label htmlFor='blood-group'>Blood Group</label>
         <select name="blood_group">
             <option value='A+'>A+</option>
@@ -53,5 +57,6 @@ async function registerPatient(e:React.FormEvent<HTMLFormElement>){
         </select>
         <button type='submit'>Register Patient</button>
     </form>
+    </section>
   )
 }

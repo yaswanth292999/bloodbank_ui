@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react'
+import './App.css'
 
 type patientInfo={
     name:string,
@@ -57,7 +58,10 @@ const PatientTable = () => {
         
     },[ ])
   return (
-    <div>
+    <section className='patientTable'>
+        <header>
+            <h1>Patient List</h1>
+        </header>
        {patientData&&<table>
             <thead>
             <tr>
@@ -81,7 +85,7 @@ const PatientTable = () => {
             
         </table>}
 
-    </div>
+    </section>
   )
 }
 
@@ -180,7 +184,7 @@ async function registerPatient(donor_id:string|null,patient_id:string,required_u
             </select>}
         </td>
         <td>
-            {patientData.donor_id?"Registered":<button disabled={selectedBloodBank&&selectedDonor?false:true} onClick={()=>registerPatient(selectedDonor,patientData.id,patientData.required_units,selectedBloodBank)}>Register</button>}
+            {patientData.donor_id?<span style={{color:'green',fontWeight:'bold'}}>Registered</span>:<button disabled={selectedBloodBank&&selectedDonor?false:true} onClick={()=>registerPatient(selectedDonor,patientData.id,patientData.required_units,selectedBloodBank)}>Register</button>}
         </td>
     </tr>:null
 

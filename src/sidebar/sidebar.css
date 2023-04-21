@@ -1,0 +1,17 @@
+.sideBar{
+    background-color: #22242d;
+    color: #fff;
+}
+
+.sideBar>ul{
+    list-style-type:none;
+}
+
+.sideBar>ul>li{
+    padding:1em;
+    display:flex;
+    gap:.5em;
+    align-items: center;
+    cursor: pointer;
+
+}
