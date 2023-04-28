@@ -1,33 +1,37 @@
-import React from 'react';
-import PatientTable from './table';
-import { RegisterPatient } from './registerPatient';
-import RegisterBloodBank from './bloodBankRegistration';
-import RegisterDonor from './registerDonor'
-import LoginPage from './login';
-import NavBar from './navbar/navBar';
-import { Sidebar } from './sidebar/sidebar';
-import Dashboard from './Dashboard'
+import React, { createContext, useContext, useState } from "react";
+import PrivateRoutes from "./privateRoutes";
+import LoginPage from "./login";
+import NavBar from "./navbar/navBar";
+import { Sidebar } from "./sidebar/sidebar";
+import Dashboard from "./Dashboard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css'
+import "./App.css";
+
+type UserContextType = {
+  isUserLoggedIn: boolean;
+  setLogin: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const UserContext = createContext<UserContextType | null>(null);
 
 function App() {
+  const [isUserLoggedIn, setLogin] = useState<boolean>(false);
+
   return (
     <BrowserRouter>
-    <NavBar/>
-    <main className='bloodBank'>
-    <Sidebar/>
-    <Routes>
-    <Route path='/' element={<Dashboard/>}/>
-      <Route path='/patientlist' element={<PatientTable/>}/>
-      <Route path='/registerpatient' element={<RegisterPatient/>}/>
-      <Route path='/registerdonor' element={<RegisterDonor/>}/>
-      <Route path='/registerBloodBank' element={<RegisterBloodBank/>}/>
-      <Route path='login' element={<LoginPage/>}/>
-    </Routes>
-     
-      </main>
+      <UserContext.Provider value={{ isUserLoggedIn, setLogin }}>
+        <NavBar />
+        <main className="bloodBank">
+          <Sidebar />
+          <PrivateRoutes />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+
+            <Route path="login" element={<LoginPage />} />
+          </Routes>
+        </main>
+      </UserContext.Provider>
     </BrowserRouter>
- 
   );
 }
 
