@@ -1,5 +1,6 @@
 import React,{useRef, useState,useEffect} from 'react'
 import './registerPatient.css'
+import Swal from 'sweetalert2'
 
 type bloodBank={
     name:string
@@ -51,8 +52,22 @@ const RegisterDonor = () => {
                 'Content-type': 'application/json; charset=UTF-8'
             },
         })
-        if(response.ok) alert("Donor Registered Successfully")
-        else alert("Donor Registration failed")
+        if(response.ok){
+            Swal.fire({
+                title: 'Donor Registration Success',
+                // text: 'Do you want to continue',
+                icon: 'success',
+                confirmButtonText: 'OK'
+              })
+        }
+        else{
+            Swal.fire({
+                title: 'Donor Registration Failed',
+                // text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Try Again!'
+              })
+        }
     }
     
   return (

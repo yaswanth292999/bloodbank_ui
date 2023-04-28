@@ -1,5 +1,6 @@
 import React,{useRef} from 'react'
 import './registerPatient.css'
+import Swal from 'sweetalert2'
 
 export const RegisterPatient = () => {
 
@@ -28,8 +29,23 @@ async function registerPatient(e:React.FormEvent<HTMLFormElement>){
             'Content-type': 'application/json; charset=UTF-8'
         },
     })
-    if(response.ok) alert("Patient Registered Successfully")
-    else alert("Patient Registration failed")
+
+    if(response.ok){
+        Swal.fire({
+            title: 'Patient Registration Success',
+            // text: 'Do you want to continue',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+    }
+    else{
+        Swal.fire({
+            title: 'Patient Registration Failed',
+            // text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Try Again!'
+          })
+    }
 }
 
   return (

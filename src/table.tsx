@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import './App.css'
+import Swal from 'sweetalert2'
 
 type patientInfo={
     name:string,
@@ -148,9 +149,20 @@ async function registerPatient(donor_id:string|null,patient_id:string,required_u
         if(!oldPatientData) return 
         return {...oldPatientData,blood_bank,donor_id,donor_name:selectedDonor}
        })
+       Swal.fire({
+        title: 'Registration Succesful',
+        // text: 'Do you want to continue',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      })
     }
     else{
-        alert("Registration failed please try again")
+        Swal.fire({
+            title: 'Registration failed',
+            // text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Try Again!'
+          })
     }
 
 
