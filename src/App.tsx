@@ -1,10 +1,14 @@
 import React, { createContext, useContext, useState } from "react";
-import PrivateRoutes from "./privateRoutes";
+
+import PatientTable from "./table";
+import { RegisterPatient } from "./registerPatient";
+import RegisterBloodBank from "./bloodBankRegistration";
+import RegisterDonor from "./registerDonor";
 import LoginPage from "./login";
 import NavBar from "./navbar/navBar";
 import { Sidebar } from "./sidebar/sidebar";
 import Dashboard from "./Dashboard";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
 type UserContextType = {
@@ -23,10 +27,40 @@ function App() {
         <NavBar />
         <main className="bloodBank">
           <Sidebar />
-          <PrivateRoutes />
           <Routes>
             <Route path="/" element={<Dashboard />} />
-
+            <Route
+              path="/patientlist"
+              element={
+                isUserLoggedIn ? <PatientTable /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/registerpatient"
+              element={
+                isUserLoggedIn ? (
+                  <RegisterPatient />
+                ) : (
+                  <Navigate to={"/login"} />
+                )
+              }
+            />
+            <Route
+              path="/registerdonor"
+              element={
+                isUserLoggedIn ? <RegisterDonor /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/registerBloodBank"
+              element={
+                isUserLoggedIn ? (
+                  <RegisterBloodBank />
+                ) : (
+                  <Navigate to={"/login"} />
+                )
+              }
+            />
             <Route path="login" element={<LoginPage />} />
           </Routes>
         </main>
