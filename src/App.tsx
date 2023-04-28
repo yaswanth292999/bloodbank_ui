@@ -10,6 +10,7 @@ import { Sidebar } from "./sidebar/sidebar";
 import Dashboard from "./Dashboard";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
+import About from "./About";
 
 type UserContextType = {
   isUserLoggedIn: boolean;
@@ -62,6 +63,7 @@ function App() {
               }
             />
             <Route path="login" element={<LoginPage />} />
+            <Route path="about" element={<About />} />
           </Routes>
         </main>
       </UserContext.Provider>

@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import "./registerPatient.css";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const RegisterBloodBank = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const navigate = useNavigate();
 
   async function registerBloodBank(e: React.FormEvent<HTMLFormElement>) {
     let formObj: any = {}; // improve type
@@ -37,6 +39,7 @@ const RegisterBloodBank = () => {
         icon: "success",
         confirmButtonText: "OK",
       });
+      navigate("/");
     } else {
       Swal.fire({
         title: "Blood Bank Registration Failed",

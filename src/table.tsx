@@ -100,7 +100,10 @@ function Patient({ patient, bloodbanks }: PatientProps) {
   const [selectedBloodBank, setSelectedBloodBank] = useState<string | null>(
     null
   );
-  const [selectedDonor, setSelectedDonor] = useState<string | null>(null);
+  const [selectedDonor, setSelectedDonor] = useState<{
+    name: string;
+    id: string;
+  } | null>(null);
 
   useEffect(() => {
     if (!selectedBloodBank) return;
@@ -154,7 +157,7 @@ function Patient({ patient, bloodbanks }: PatientProps) {
           ...oldPatientData,
           blood_bank,
           donor_id,
-          donor_name: selectedDonor,
+          donor_name: selectedDonor?.name ?? "",
         };
       });
       Swal.fire({
@@ -189,12 +192,17 @@ function Patient({ patient, bloodbanks }: PatientProps) {
       </td>
       <td>
         {patientData.donor_name ?? (
-          <select onChange={(e) => setSelectedDonor(e.target.value)}>
+          <select
+            onChange={(e) => setSelectedDonor(JSON.parse(e.target.value))}
+          >
             <option>Choose donor</option>
             {donors &&
               donors.map((donor) => {
                 return (
-                  <option key={donor.id} value={donor.id}>
+                  <option
+                    key={donor.id}
+                    value={JSON.stringify({ id: donor.id, name: donor.name })}
+                  >
                     {donor.name}
                   </option>
                 );
@@ -210,7 +218,7 @@ function Patient({ patient, bloodbanks }: PatientProps) {
             disabled={selectedBloodBank && selectedDonor ? false : true}
             onClick={() =>
               registerPatient(
-                selectedDonor,
+                selectedDonor?.id ?? "",
                 patientData.id,
                 patientData.required_units,
                 selectedBloodBank

@@ -52,6 +52,14 @@ export const Sidebar = () => {
             Register Blood Bank
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/about"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            About
+          </NavLink>
+        </li>
       </ul>
     </aside>
   );

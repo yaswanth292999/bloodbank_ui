@@ -1,17 +1,32 @@
-.sideBar{
-    background-color: #22242d;
-    color: #fff;
+.sideBar {
+  background-color: #22242d;
+  color: #fff;
 }
 
-.sideBar>ul{
-    list-style-type:none;
+.sideBar > ul {
+  list-style-type: none;
 }
 
-.sideBar>ul>li{
-    padding:1em;
-    display:flex;
-    gap:.5em;
-    align-items: center;
-    cursor: pointer;
+.sideBar > ul > li {
+  /* padding: 1em; */
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  cursor: pointer;
+}
+.sideBar > ul > li:hover {
+  background-color: #2f313b;
+}
 
+ul {
+  padding-inline-start: 0px;
+}
+.sideBar ul li a {
+  margin-right: auto;
+  margin-left: 1em;
+  padding: 1em;
+  /* border: 2px solid; */
+  margin-right: auto;
+  margin-left: 1em;
+  width: 100%;
 }

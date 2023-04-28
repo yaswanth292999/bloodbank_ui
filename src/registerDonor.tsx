@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./registerPatient.css";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 type bloodBank = {
   name: string;
@@ -8,6 +9,7 @@ type bloodBank = {
 
 const RegisterDonor = () => {
   const [bloodbanks, setBloodBank] = useState<bloodBank[] | undefined>();
+  const navigate = useNavigate();
 
   async function getALLBloodBanks() {
     const result = await fetch(
@@ -52,6 +54,7 @@ const RegisterDonor = () => {
         icon: "success",
         confirmButtonText: "OK",
       });
+      navigate("/");
     } else {
       Swal.fire({
         title: "Donor Registration Failed",

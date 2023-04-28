@@ -93,3 +93,6 @@ table {
 .bloodbank__card {
   background-color: #ffc107;
 }
+html {
+  font-family: "Courier New", Courier, monospace;
+}
